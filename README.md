@@ -8,26 +8,29 @@
  ## Background
  This project focuses on developing a comprehensive end-to-end solution using Large Language Models (LLMs) by integrating Retrieval-Augmented Generation (RAG), web search capabilities via Tavily, 
  and collaborative AI agents through CrewAI. The primary objective is to mitigate LLM hallucinations by employing RAG, which facilitates real-time information retrieval from external sources to ensure the delivery of 
- accurate and current responses. Furthermore, the project advances its scope by implementing a multi-agent system where AI agents collaborate to research user queries, draft detailed responses, critique the provided answers,
- and compile a final report.
+ accurate and current responses. Furthermore, the project advances its scope by implementing a multi-agent system where AI agents collaborate to research user queries, draft detailed responses, critique the provided answers, and compile a final report.
 
  ## Key Components of the Project
  
 ## 1. Environment Setup
-Programming Languages: Python
+* **Programming Languages:** Python 3.9
+* **OpenAI API:** Used for integrating OpenAI's AI models like GPT-4 for natural language processing and data analysis tasks.
+* **Groq API:** Powers fast LLM inference with low latency for tasks like text generation in the project using the "mistral-saba-24b" model.
+* **Tavily API:** Provides real-time search results for AI agents to fetch accurate, current data on AI in healthcare via TavilySearchResults tool.
 
+Ensure you are keeping your APi keys safe google colab offers colab secrets if trying to run on colab as seen in the RAG_LLM_Analysis.ipynb
 
-* langchain – Framework for LLM apps
-* tavily-python – Real-time search API
-* groq – For inferencing LLM models running on groq cloud, so you don't have to run the LLM models on your local system
-* streamlit – A Python library for creating interactive web applications, used to build the user interface of the AI in Healthcare Summarization App for inputting queries and displaying results.
-* langgraph – A component of LangChain for building complex workflows and agentic systems, facilitating the orchestration of multiple AI agents in the project.
-* markdown_pdf – A tool for converting Markdown content into PDF format, utilized to generate downloadable reports from the summarized content.
-* dotenv – A Python library for loading environment variables from a .env file, ensuring secure management of API keys and configuration settings.
-* FAISS Retriever (custom tool) – A custom retrieval tool integrated into the project, designed to fetch relevant documents from a local knowledge base on AI in healthcare for enhancing response accuracy through RAG.
-* OpenAI API: Used for integrating OpenAI's AI models like GPT-4 for natural language processing and data analysis tasks.
-* Groq API: Powers fast LLM inference with low latency for tasks like text generation in the project using the "mistral-saba-24b" model.
-* Tavily API: Provides real-time search results for AI agents to fetch accurate, current data on AI in healthcare via TavilySearchResults tool.
+* **langchain** – Framework for LLM apps
+* **tavily-python** – Real-time search API
+* **groq** – For inferencing LLM models running on groq cloud, so you don't have to run the LLM models on your local system
+* **streamlit** – A Python library for creating interactive web applications, used to build the user interface of the AI in Healthcare Summarization App for inputting queries and displaying results.
+* **langgraph** – A component of LangChain for building complex workflows and agentic systems, facilitating the orchestration of multiple AI agents in the project.
+* **markdown_pdf** – A tool for converting Markdown content into PDF format, utilized to generate downloadable reports from the summarized content.
+* **dotenv** – A Python library for loading environment variables from a .env file, ensuring secure management of API keys and configuration settings.
+* **FAISS Retriever (custom tool)** – A custom retrieval tool integrated into the project, designed to fetch relevant documents from a local knowledge base on AI in healthcare for enhancing response accuracy through RAG.
+* **OpenAI API:** Used for integrating OpenAI's AI models like GPT-4 for natural language processing and data analysis tasks.
+* **Groq API:** Powers fast LLM inference with low latency for tasks like text generation in the project using the "mistral-saba-24b" model.
+* **Tavily API:** Provides real-time search results for AI agents to fetch accurate, current data on AI in healthcare via TavilySearchResults tool.
 
 ## 2. Data Loading and Preprocessing
 Documents are loaded from the crew_data folder.
@@ -55,7 +58,7 @@ Here's a breakdown of the agents implemented in the notebook:
 **2. Writer Agent**
 **Role:** Content Writer
 **Goal:** Generate detailed and structured responses or reports based on the information retrieved by the Researcher Agent.
-**Tools:**LLM for generation, with context provided by the Researcher.
+**Tools:** LLM for generation, with context provided by the Researcher.
 
 **3. Critic Agent**
 **Role:** Reviewer
@@ -68,8 +71,20 @@ Once created, agents are managed by AgentExecutor
 for task execution and interaction, with real-time feedback via StreamlitCallbackHandler in the Streamlit app.
 
 ## Discussion and Future Work
-Future Work will include
-1. Incoporating a chat function that allows agent to run multiple queries
+This project will suit diverse business needs ranging from:
+
+**1. Healthcare:** This project directly targets AI in healthcare summarization, offering improved decision-making for clinicians by retrieving patient-specific data, medical literature, and treatment guidelines, thus enhancing patient care and operational efficiency. It also supports pharmaceutical companies by accelerating drug development through instant access to clinical trial results and compliance reporting.
+
+**Customer Support:** By integrating RAG and multi-agent systems, this project can be tailored and tweaked to assist businesses enhance AI-driven customer service with accurate, personalized responses to queries, reducing resolution times and increasing customer satisfaction across industries like retail and technology. This leads to higher loyalty and reduced operational costs.
+
+**Financial Services:** The project’s ability to analyze data in real-time and generate detailed reports aids in fraud detection, risk assessment, and regulatory compliance, enabling banks and financial institutions to make informed decisions quickly and streamline processes. This improves security and operational efficiency.
+
+**Manufacturing and Industrial Operations:** Multi-agent RAG systems can monitor equipment health, predict failures, and automate maintenance reports, minimizing downtime and boosting productivity for manufacturers through efficient data retrieval and analysis. This reduces costs associated with unplanned disruptions.
+
+**E-Commerce:** The project supports personalized shopping experiences by pulling relevant product details and customer preferences, allowing platforms to tailor recommendations and content, which enhances user engagement and drives sales. This scalability adapts to dynamic market demands effectively.
+
+**Future Work will include:**
+1. Incoporating a chat function that provides continous answers to queries incase the user wants to continue from the last query while keeping answers short
 2. Allowing direct PDF and document upload on the frontend
 
 
