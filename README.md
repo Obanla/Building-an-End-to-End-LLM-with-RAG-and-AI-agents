@@ -33,19 +33,21 @@ Ensure you are keeping your APi keys safe google colab offers colab secrets if t
 * **Tavily API:** Provides real-time search results for AI agents to fetch accurate, current data on AI in healthcare via TavilySearchResults tool.
 
 ## 2. Data Loading and Preprocessing
-Documents are loaded from the crew_data folder.
-They’re chunked using RecursiveCharacterTextSplitter for efficient indexing. 
+Documents are loaded from the crew_data folder. Pip Install PyPDF to be able to load the PDF files. Once loaded the PDF files are split into chunks using the RecursiveCharacterTextSplitter for efficient indexing. I chose a chunk size of 500 and an overlap of 50. Set this as per your requirements.
+Once split and chunked, create an embeddings vector store and ensure you save it locally, this way you dont need to keep making API calls. You can create either a FAISS vector store or a Chroma DB vector store of the embeddings, I used FAISS in this project. 
 
 ## 3. Retrieval-Augmented QA
 The FAISS vectorstore is used to retrieve documents relevant to a user’s query. The query and context are passed to the LLM to generate a meaningful response. After this is done, similarity_search() is used to 
 see what documents match a query. Embeddings are visualized using PCA and each chunk is converted into an embedding vector using OpenAI Embeddings.
 
+The embeddings are indexed with FAISS, a high-performance similarity search library. After which new documents are added to crew_data and the FAISS FAISS index is rebuilt and new queries are tested.
+
+Also, I conducted a similarity search on the documents to unveil what document is similar to a query and then proceeded to use elbow method to find optimal K for document clusters while using PCA to visualize the document clusters in 2D as is seen in the plots below
+
 ![image](https://github.com/user-attachments/assets/6b764f6a-4ef5-4250-8586-c200cde3c975)
 
 ![image](https://github.com/user-attachments/assets/12bb26ae-9b9e-46d7-be3d-93a838cdf693)
 
-
-The embeddings are indexed with FAISS, a high-performance similarity search library. After which new documents are added to crew_data and the FAISS FAISS index is rebuilt and new queries are tested.
 
 ## 4. 🌐 Tavily Search Integration
 Tavily lets you add real-time web search capability to your AI agents and get real time information. The trend agent was created using LangChain's create_react_agent function with ChatGroq with "mistral-saba-24b" model
