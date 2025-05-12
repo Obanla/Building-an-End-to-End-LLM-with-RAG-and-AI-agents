@@ -38,7 +38,13 @@ They’re chunked using RecursiveCharacterTextSplitter for efficient indexing.
 
 ## 3. Retrieval-Augmented QA
 The FAISS vectorstore is used to retrieve documents relevant to a user’s query. The query and context are passed to the LLM to generate a meaningful response. After this is done, similarity_search() is used to 
-see what documents match a query. Embedding are visualized using PCA and each chunk is converted into an embedding vector using OpenAI Embeddings.
+see what documents match a query. Embeddings are visualized using PCA and each chunk is converted into an embedding vector using OpenAI Embeddings.
+
+![image](https://github.com/user-attachments/assets/6b764f6a-4ef5-4250-8586-c200cde3c975)
+
+![image](https://github.com/user-attachments/assets/12bb26ae-9b9e-46d7-be3d-93a838cdf693)
+
+
 The embeddings are indexed with FAISS, a high-performance similarity search library. After which new documents are added to crew_data and the FAISS FAISS index is rebuilt and new queries are tested.
 
 ## 4. 🌐 Tavily Search Integration
